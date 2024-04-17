@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "arrowhead.orchestrator.port",
+      "type": "java.lang.Integer",
+      "description": "Port where the Arrowhead Orchestrator is located."
+    },
+    {
+      "name": "arrowhead.https.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable HTTPS requests for Arrowhead (make false if using HTTP)."
+    },
+    {
+      "name": "arrowhead.orchestrator.address",
+      "type": "java.lang.String",
+      "description": "Address of the Arrowhead Orchestrator."
+    },
+    {
+      "name": "service.https.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable HTTPS requests for services (make false if using HTTP)."
+    },
+    {
+      "name": "triggerintercloud.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable intercloud communication in Arrowhead."
+    }
+  ] }

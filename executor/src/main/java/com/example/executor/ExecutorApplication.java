@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @Deployment(resources = "classpath:*.bpmn")
 public class ExecutorApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(ExecutorApplication.class, args);
-    }
+    public static void main(String[] args) {SpringApplication.run(ExecutorApplication.class, args); }
 
 }
