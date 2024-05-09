@@ -72,7 +72,7 @@ public class Executor {
                 return;
             }
             JSONObject serviceResponseJSON = new JSONObject(serviceResponse);
-            JobStatus status = JobStatus.valueOf(serviceResponseJSON.getString("status"));
+            JobStatus status = JobStatus.valueOf(serviceResponseJSON.getString("status").toUpperCase());
             switch (status) {
                 case SUCCESS -> {
                     Map<String, Object> result = mapper.readValue(serviceResponse, HashMap.class);
@@ -84,9 +84,8 @@ public class Executor {
                     client.newFailCommand(job).retries(0).errorMessage(message).send();
                 }
                 case ERROR -> {
-                    String message = serviceResponseJSON.getString("message");
                     String code = serviceResponseJSON.getString("errorCode");
-                    client.newThrowErrorCommand(job).errorCode(code).errorMessage(message).send();
+                    client.newThrowErrorCommand(job).errorCode(code).send();
                 }
             }
         } catch (IOException | JSONException e){

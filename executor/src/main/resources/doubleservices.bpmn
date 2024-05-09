@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xiiko9" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.4.0">
-  <bpmn:process id="testing" isExecutable="true">
+  <bpmn:process id="testing" name="doubleServices" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0ko00dc</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Activity_0k23jt5" name="Say Hello">
+    <bpmn:serviceTask id="Activity_0k23jt5" name="Retrieve Selected Flavor">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="execute" />
         <zeebe:ioMapping>
           <zeebe:input source="=&#34;sayhello&#34;" target="service" />
-          <zeebe:output source="=dick" target="penis" />
+          <zeebe:output source="=nextService" target="next" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0ko00dc</bpmn:incoming>
-      <bpmn:outgoing>Flow_1edf93l</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0p7zjdg</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0ko00dc" sourceRef="StartEvent_1" targetRef="Activity_0k23jt5" />
-    <bpmn:endEvent id="Event_1jbf7l0">
-      <bpmn:incoming>Flow_1edf93l</bpmn:incoming>
+    <bpmn:serviceTask id="Activity_0yiygy8" name="Dispense Selected Flavor">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="execute" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=next" target="service" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0p7zjdg</bpmn:incoming>
+      <bpmn:outgoing>Flow_18kgfiu</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0p7zjdg" sourceRef="Activity_0k23jt5" targetRef="Activity_0yiygy8" />
+    <bpmn:endEvent id="Event_00ofjgr">
+      <bpmn:incoming>Flow_18kgfiu</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1edf93l" sourceRef="Activity_0k23jt5" targetRef="Event_1jbf7l0" />
+    <bpmn:sequenceFlow id="Flow_18kgfiu" sourceRef="Activity_0yiygy8" targetRef="Event_00ofjgr" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="testing">
@@ -30,16 +41,24 @@
         <dc:Bounds x="270" y="77" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1jbf7l0_di" bpmnElement="Event_1jbf7l0">
-        <dc:Bounds x="432" y="99" width="36" height="36" />
+      <bpmndi:BPMNShape id="Activity_0yiygy8_di" bpmnElement="Activity_0yiygy8">
+        <dc:Bounds x="440" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_00ofjgr_di" bpmnElement="Event_00ofjgr">
+        <dc:Bounds x="612" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ko00dc_di" bpmnElement="Flow_0ko00dc">
         <di:waypoint x="215" y="117" />
         <di:waypoint x="270" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1edf93l_di" bpmnElement="Flow_1edf93l">
+      <bpmndi:BPMNEdge id="Flow_0p7zjdg_di" bpmnElement="Flow_0p7zjdg">
         <di:waypoint x="370" y="117" />
-        <di:waypoint x="432" y="117" />
+        <di:waypoint x="440" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18kgfiu_di" bpmnElement="Flow_18kgfiu">
+        <di:waypoint x="540" y="117" />
+        <di:waypoint x="612" y="117" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
