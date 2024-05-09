@@ -1,5 +1,5 @@
 # Integration tool for the Eclipse Arrowhead Framework with Camunda 8 for automated BPMN workflow execution
-`
+
 <p>An integration tool that allows users to automate BPMN service task execution in Camunda 8 using the Arrowhead Framework. </p>
 
 ## Prerequisites
@@ -26,7 +26,11 @@
 
 1. To access the tool from the Camunda Modeler, add a service tesk to your diagram and type `execute` as the task definition type.
 
+![](/executor/images/servicetaskexample.png)
+
 2. Add an input variable called `service` with the name of the required service as registered on Arrowhead.
+   
+![](/executor/images/servicetaskexample2.png)
 
 3. Once your diagram is finished, save the `.bpmn` file in the `resources` folder.
 
